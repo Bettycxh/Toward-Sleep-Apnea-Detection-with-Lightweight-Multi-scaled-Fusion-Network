@@ -9,7 +9,11 @@ Sleep apnea (SA) is a common sleep disorder that occurs during sleep and its sym
 [Apnea-ECG Database](https://physionet.org/content/apnea-ecg/1.0.0/)
 
 ## Usage
-
+### Get the pkl file
+1. Download the dataset Apnea-ECG Database
+2. Run [Preprocessing.py](https://github.com/Bettycxh/SE-MSCNN-A-Lightweight-Multi-scaled-Fusion-Network-for-Sleep-Apnea-Detection-Using-ECG-Signals/blob/main/Preprocessing.py) to get a file named apnea-ecg.pkl
+### Traning and test
+1. Run [SE-MSCNN.py](https://github.com/Bettycxh/SE-MSCNN-A-Lightweight-Multi-scaled-Fusion-Network-for-Sleep-Apnea-Detection-Using-ECG-Signals/blob/main/SE-MSCNN.py)
 
 ## Requirements
 Python==3.6
