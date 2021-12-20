@@ -20,14 +20,11 @@ after = 2
 # normalize
 scaler = lambda arr: (arr - np.min(arr)) / (np.max(arr) - np.min(arr))
 
-
 def load_data(path):
     tm = np.arange(0, (before + 1 + after) * 60, step=1 / float(ir))
     with open(os.path.join(base_dir, path), 'rb') as f:  # read preprocessing result
         apnea_ecg = pickle.load(f)
-    x_train1 = []
-    x_train2 = []
-    x_train3 = []
+    x_train1,x_train2,x_train3 = [],[],[]
     o_train, y_train = apnea_ecg["o_train"], apnea_ecg["y_train"]
     groups_train = apnea_ecg["groups_train"]
     for i in range(len(o_train)):
@@ -38,16 +35,8 @@ def load_data(path):
         x_train1.append([rri_interp_signal, ampl_interp_signal])  # 5-minute-long segment
         x_train2.append([rri_interp_signal[180:720], ampl_interp_signal[180:720]])  # 3-minute-long segment
         x_train3.append([rri_interp_signal[360:540], ampl_interp_signal[360:540]])  # 1-minute-long segment
-    x_training1 = []
-    x_training2 = []
-    x_training3 = []
-    y_training = []
-    groups_training = []
-    x_val1 = []
-    x_val2 = []
-    x_val3 = []
-    y_val = []
-    groups_val = []
+    x_training1,x_training2,x_training3,y_training,groups_training = [],[],[],[],[]
+    x_val1,x_val2,x_val3,y_val,groups_val = [],[],[],[],[]
 
     trainlist = random.sample(range(16709), 11637)
     num = [i for i in range(16709)]
@@ -73,9 +62,7 @@ def load_data(path):
     x_val2 = np.array(x_val2, dtype="float32").transpose((0, 2, 1))
     x_val3 = np.array(x_val3, dtype="float32").transpose((0, 2, 1))
     y_val = np.array(y_val, dtype="float32")
-    x_test1 = []
-    x_test2 = []
-    x_test3 = []
+    x_test1,x_test2,x_test3 = [],[],[]
     o_test, y_test = apnea_ecg["o_test"], apnea_ecg["y_test"]
     groups_test = apnea_ecg["groups_test"]
     for i in range(len(o_test)):
