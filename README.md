@@ -9,11 +9,18 @@ Sleep apnea (SA) is a common sleep disorder that occurs during sleep and its sym
 [Apnea-ECG Database](https://physionet.org/content/apnea-ecg/1.0.0/)
 
 ## Usage
-### Get the pkl file
-1. Download the dataset Apnea-ECG Database
-2. Run [Preprocessing.py](https://github.com/Bettycxh/SE-MSCNN-A-Lightweight-Multi-scaled-Fusion-Network-for-Sleep-Apnea-Detection-Using-ECG-Signals/blob/main/Preprocessing.py) to get a file named apnea-ecg.pkl
-### Traning and test
-1. Run [SE-MSCNN.py](https://github.com/Bettycxh/SE-MSCNN-A-Lightweight-Multi-scaled-Fusion-Network-for-Sleep-Apnea-Detection-Using-ECG-Signals/blob/main/SE-MSCNN.py)
+
+1. Get the pkl file
+- Download the dataset Apnea-ECG Database
+- Run [Preprocessing.py](https://github.com/Bettycxh/SE-MSCNN-A-Lightweight-Multi-scaled-Fusion-Network-for-Sleep-Apnea-Detection-Using-ECG-Signals/blob/main/Preprocessing.py) to get a file named apnea-ecg.pkl
+
+2. Per-segment classification
+- Run [SE-MSCNN.py](https://github.com/Bettycxh/SE-MSCNN-A-Lightweight-Multi-scaled-Fusion-Network-for-Sleep-Apnea-Detection-Using-ECG-Signals/blob/main/SE-MSCNN.py)
+
+3. Per-recording classification  
+- Run [evaluate.py](https://github.com/Bettycxh/SE-MSCNN-A-Lightweight-Multi-scaled-Fusion-Network-for-Sleep-Apnea-Detection-Using-ECG-Signals/blob/main/utils/code_for_calculating_per-recording/evaluate.py)
+- The performance is shown in [Table 2.csv](https://github.com/Bettycxh/SE-MSCNN-A-Lightweight-Multi-scaled-Fusion-Network-for-Sleep-Apnea-Detection-Using-ECG-Signals/blob/main/utils/code_for_calculating_per-recording/output/Table%202.csv)
+
 
 ## Requirements
 Python==3.6
