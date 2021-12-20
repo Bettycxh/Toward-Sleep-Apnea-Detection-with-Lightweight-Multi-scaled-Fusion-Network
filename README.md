@@ -19,4 +19,4 @@ Not yet published
 <!-- If our work is helpful to you, please cite: -->
 
 ## Email
-if you have any questions, please email to: [xhchen@m.scnu.edu.cn](mailto:xhchen@m.scnu.edu.cn)
+If you have any questions, please email to: [xhchen@m.scnu.edu.cn](mailto:xhchen@m.scnu.edu.cn)
