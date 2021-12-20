@@ -20,7 +20,7 @@ from sklearn.metrics import confusion_matrix
 import random
 from sklearn.metrics import f1_score
 
-base_dir = "./data"
+base_dir = "./dataset"
 os.environ["CUDA_VISIBLE_DEVICES"]="0,1"
 ir = 3 # interpolate interval
 before = 2
