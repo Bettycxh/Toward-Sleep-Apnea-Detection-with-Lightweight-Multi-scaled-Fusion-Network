@@ -48,7 +48,7 @@ def load_data(path):
     y_val=[]
     groups_val=[]
 
-    trainlist = random.sample(range(16709),11637) #random.sample()生成不相同的随机数
+    trainlist = random.sample(range(16709),11637)
     num=[i for i in range(16709)]
     vallist=set(num)-set(trainlist)
     vallist=list(vallist)
@@ -64,13 +64,13 @@ def load_data(path):
         x_val3.append(x_train3[i])
         y_val.append(y_train[i])
         groups_val.append(groups_train[i])
-    x_training1 = np.array(x_training1, dtype="float32").transpose((0, 2, 1)) # convert to numpy format
-    x_training2 = np.array(x_training2, dtype="float32").transpose((0, 2, 1)) # convert to numpy format
-    x_training3 = np.array(x_training3, dtype="float32").transpose((0, 2, 1)) # convert to numpy format
+    x_training1 = np.array(x_training1, dtype="float32").transpose((0, 2, 1))
+    x_training2 = np.array(x_training2, dtype="float32").transpose((0, 2, 1))
+    x_training3 = np.array(x_training3, dtype="float32").transpose((0, 2, 1)) 
     y_training = np.array(y_training, dtype="float32")
-    x_val1 = np.array(x_val1, dtype="float32").transpose((0, 2, 1)) # convert to numpy format
-    x_val2 = np.array(x_val2, dtype="float32").transpose((0, 2, 1)) # convert to numpy format
-    x_val3 = np.array(x_val3, dtype="float32").transpose((0, 2, 1)) # convert to numpy format
+    x_val1 = np.array(x_val1, dtype="float32").transpose((0, 2, 1))
+    x_val2 = np.array(x_val2, dtype="float32").transpose((0, 2, 1))
+    x_val3 = np.array(x_val3, dtype="float32").transpose((0, 2, 1))
     y_val = np.array(y_val, dtype="float32")
     x_test1 = []
     x_test2 = []
@@ -99,6 +99,7 @@ def lr_schedule(epoch, lr):
     return lr
 
 def create_model(input_a_shape,input_b_shape,input_c_shape, weight=1e-3):
+	#SA-CNN-3
     input1 = Input(shape=input_a_shape)
     x1 = Conv1D(16, kernel_size=11, strides=1, padding="same", activation="relu", kernel_initializer="he_normal",
                 kernel_regularizer=l2(weight), bias_regularizer=l2(weight))(input1)
@@ -109,7 +110,7 @@ def create_model(input_a_shape,input_b_shape,input_c_shape, weight=1e-3):
                kernel_regularizer=l2(1e-3), bias_regularizer=l2(weight))(x1)
     x1 = MaxPooling1D(pool_size=5,padding="same")(x1)
 
-
+	#SA-CNN-2
     input2 = Input(shape=input_b_shape)
     x2 = Conv1D(16, kernel_size=11, strides=1, padding="same", activation="relu", kernel_initializer="he_normal",
                 kernel_regularizer=l2(weight), bias_regularizer=l2(weight))(input2)
@@ -119,7 +120,7 @@ def create_model(input_a_shape,input_b_shape,input_c_shape, weight=1e-3):
     x2 = Conv1D(32, kernel_size=11, strides=3, padding="same", activation="relu", kernel_initializer="he_normal",
                kernel_regularizer=l2(1e-3), bias_regularizer=l2(weight))(x2)
 
-
+	#SA-CNN-1
     input3 = Input(shape=input_c_shape)
     x3 = Conv1D(16, kernel_size=11, strides=1, padding="same", activation="relu", kernel_initializer="he_normal",
                 kernel_regularizer=l2(weight), bias_regularizer=l2(weight))(input3)
@@ -128,7 +129,8 @@ def create_model(input_a_shape,input_b_shape,input_c_shape, weight=1e-3):
     x3 = MaxPooling1D(pool_size=3,padding="same")(x3)
     x3= Conv1D(32, kernel_size=1, strides=1, padding="same", activation="relu", kernel_initializer="he_normal",
                kernel_regularizer=l2(1e-3), bias_regularizer=l2(weight))(x3)
-
+	
+	#Channel-wise attention module
     concat=keras.layers.concatenate([x1,x2,x3],name="Concat_Layer",axis=-1)
     squeeze = GlobalAveragePooling1D()(concat)
     excitation=Dense(48,activation='relu')(squeeze)
@@ -140,6 +142,7 @@ def create_model(input_a_shape,input_b_shape,input_c_shape, weight=1e-3):
     outputs=Dense(2,activation='softmax',name="Output_Layer")(dp)
     model = Model(inputs=[input1,input2,input3], outputs=outputs)
     return model
+
 if __name__ == "__main__":
 	#load_data
     path="apnea-ecg.pkl"
@@ -159,12 +162,11 @@ if __name__ == "__main__":
     history = model.fit([x_train1,x_train2,x_train3], y_train, batch_size=128, epochs=1,
                         validation_data=([x_val1, x_val2, x_val3], y_val),callbacks=callbacks_list)
 
-    # test the model
+    # test
 	path="apnea-ecg.pkl"
     x_train1,x_train2,x_train3, y_train, groups_train,x_val1,x_val2,x_val3, y_val, groups_val, x_test1, x_test2, x_test3, y_test, groups_test = load_data(path)
     filepath='./weights.best.hdf5'
     model = load_model(filepath)
-    print("testing:")
     loss, accuracy = model.evaluate([x_test1, x_test2, x_test3], y_test)
     # save prediction score
     y_score = model.predict([x_test1, x_test2, x_test3])
