@@ -163,7 +163,7 @@ if __name__ == "__main__":
     y_score = model.predict([x_test1, x_test2, x_test3])
     output = pd.DataFrame({"y_true": y_test[:, 1], "y_score": y_score[:, 1], "subject": groups_test})
     output.to_csv("./utils/code_for_calculating_per-recording/output/SE-MSCNN.csv", index=False)
-    y_true, y_pred = y_test, np.argmax(model.predict([x_test1, x_test2, x_test3], batch_size=1024, verbose=1), axis=-1)
+    y_true, y_pred = np.argmax(y_test, axis=-1), np.argmax(model.predict([x_test1, x_test2, x_test3], batch_size=1024, verbose=1), axis=-1)
     C = confusion_matrix(y_true, y_pred, labels=(1, 0))
     TP, TN, FP, FN = C[0, 0], C[1, 1], C[1, 0], C[0, 1]
     acc, sn, sp = 1. * (TP + TN) / (TP + TN + FP + FN), 1. * TP / (TP + FN), 1. * TN / (TN + FP)
