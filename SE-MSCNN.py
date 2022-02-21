@@ -38,7 +38,7 @@ def load_data(path):
     x_training1,x_training2,x_training3,y_training,groups_training = [],[],[],[],[]
     x_val1,x_val2,x_val3,y_val,groups_val = [],[],[],[],[]
 
-    trainlist = random.sample(range(16709), 11637)
+    trainlist = random.sample(range(len(o_train)),int(len(o_train)*0.7))
     num = [i for i in range(16709)]
     vallist = set(num) - set(trainlist)
     vallist = list(vallist)
@@ -152,7 +152,7 @@ if __name__ == "__main__":
     checkpoint = ModelCheckpoint(filepath, monitor='val_accuracy', verbose=1, save_best_only=True, mode='max')
     lr_scheduler = LearningRateScheduler(lr_schedule)
     callbacks_list = [lr_scheduler, checkpoint]
-    history = model.fit([x_train1, x_train2, x_train3], y_train, batch_size=128, epochs=1,
+    history = model.fit([x_train1, x_train2, x_train3], y_train, batch_size=128, epochs=100,
                         validation_data=([x_val1, x_val2, x_val3], y_val), callbacks=callbacks_list)
 
     # test
