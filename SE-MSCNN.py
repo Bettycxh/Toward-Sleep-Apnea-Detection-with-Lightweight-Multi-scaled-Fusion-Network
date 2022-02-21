@@ -156,9 +156,6 @@ if __name__ == "__main__":
                         validation_data=([x_val1, x_val2, x_val3], y_val), callbacks=callbacks_list)
 
     # test
-    path = "apnea-ecg.pkl"
-    x_train1, x_train2, x_train3, y_train, groups_train, x_val1, x_val2, \
-    x_val3, y_val, groups_val, x_test1, x_test2, x_test3, y_test, groups_test = load_data(path)
     filepath = './weights.best.hdf5'
     model = load_model(filepath)
     loss, accuracy = model.evaluate([x_test1, x_test2, x_test3], y_test)
