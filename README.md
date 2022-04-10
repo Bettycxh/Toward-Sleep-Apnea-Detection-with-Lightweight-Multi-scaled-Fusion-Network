@@ -29,8 +29,18 @@ TensorFlow==1.14.0
 
 
 ## Cite
-Not yet published
-<!-- If our work is helpful to you, please cite: -->
+If our work is helpful to you, please cite:
+  @INPROCEEDINGS{9669358,  
+  author={Chen, Xianhui and Chen, Ying and Ma, Wenjun and Fan, Xiaomao and Li, Ye},  
+  booktitle={2021 IEEE International Conference on Bioinformatics and Biomedicine (BIBM)},  
+  title={SE-MSCNN: A Lightweight Multi-scaled Fusion Network for Sleep Apnea Detection Using Single-Lead ECG Signals},  
+  year={2021},  
+  volume={}, 
+  number={},  
+  pages={1276-1280},  
+  doi={10.1109/BIBM52615.2021.9669358}}
+  
+Recently, another manuscript has accepted for publication in Knowledge-Based System, which provides ablation experiments and computation complexity analysis.
 
 ## Email
 If you have any questions, please email to: [xhchen@m.scnu.edu.cn](mailto:xhchen@m.scnu.edu.cn)
