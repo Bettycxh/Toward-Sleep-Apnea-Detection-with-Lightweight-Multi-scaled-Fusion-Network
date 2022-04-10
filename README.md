@@ -30,6 +30,7 @@ TensorFlow==1.14.0
 
 ## Cite
 If our work is helpful to you, please cite:
+  
   @INPROCEEDINGS{9669358,  
   author={Chen, Xianhui and Chen, Ying and Ma, Wenjun and Fan, Xiaomao and Li, Ye},  
   booktitle={2021 IEEE International Conference on Bioinformatics and Biomedicine (BIBM)},  
