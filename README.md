@@ -30,7 +30,7 @@ TensorFlow==1.14.0
 
 ## Cite
 If our work is helpful to you, please cite:
-
+<!-- 
  ```html 
  @INPROCEEDINGS{9669358,  
   author={Chen, Xianhui and Chen, Ying and Ma, Wenjun and Fan, Xiaomao and Li, Ye},  
@@ -43,7 +43,7 @@ If our work is helpful to you, please cite:
   doi={10.1109/BIBM52615.2021.9669358}}
   ```
   
-Recently, another manuscript has published in Knowledge-Based System, which provides ablation experiments and computation complexity analysis.
+Recently, another manuscript has published in Knowledge-Based System, which provides ablation experiments and computation complexity analysis. -->
 ```html
 @article{CHEN2022108783,
 title = {Toward sleep apnea detection with lightweight multi-scaled fusion network},
