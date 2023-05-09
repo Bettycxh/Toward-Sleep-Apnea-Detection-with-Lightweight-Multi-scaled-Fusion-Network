@@ -59,4 +59,4 @@ Recently, another manuscript has published in Knowledge-Based System, which prov
 ```
 
 ## Email
-If you have any questions, please email to: [xhchen@m.scnu.edu.cn](mailto:xhchen@m.scnu.edu.cn)
+If you have any questions, please email to: [xhchen@nyu.edu](mailto:xhchen@nyu.edu)
